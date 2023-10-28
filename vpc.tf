@@ -8,3 +8,14 @@ resource "aws_vpc" "application" {
     Name = "rama-vpc"
   }
 }
+
+# Create Public subnet AZ-A
+
+resource "aws_subnet" "application-pub-sn-A" {
+  vpc_id     = aws_vpc.application.id
+  cidr_block = "192.168.1.0/24"
+  availability_zone = "ap-southeast-2a"
+  tags = {
+    Name = "rama-pub-sn-A"
+  }
+}
