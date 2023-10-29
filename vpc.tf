@@ -118,3 +118,59 @@ resource "aws_route_table_association" "application-pvt-asc-B" {
   subnet_id      = aws_subnet.application-pvt-sn-B.id
   route_table_id = aws_route_table.application-pvt-RT.id
 }
+
+# Create Public NACL
+
+resource "aws_network_acl" "application-pub-NACL" {
+  vpc_id = aws_vpc.application.id
+
+  egress {
+    protocol   = "tcp"
+    rule_no    = 100
+    action     = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port  = 0
+    to_port    = 65535
+  }
+
+  ingress {
+    protocol   = "tcp"
+    rule_no    = 100
+    action     = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port  = 0
+    to_port    = 65535
+  }
+
+  tags = {
+    Name = "rama-pub-NACL"
+  }
+}
+
+# Create Private NACL
+
+resource "aws_network_acl" "application-pvt-NACL" {
+  vpc_id = aws_vpc.application.id
+
+  egress {
+    protocol   = "tcp"
+    rule_no    = 100
+    action     = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port  = 0
+    to_port    = 65535
+  }
+
+  ingress {
+    protocol   = "tcp"
+    rule_no    = 100
+    action     = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port  = 0
+    to_port    = 65535
+  }
+
+  tags = {
+    Name = "rama-pvt-NACL"
+  }
+}
