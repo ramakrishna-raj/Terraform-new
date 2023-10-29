@@ -66,3 +66,29 @@ resource "aws_internet_gateway" "application-igw" {
     Name = "ramakrishna-igw"
   }
 }
+
+# Create Public Route Table
+
+resource "aws_route_table" "application-pub-RT" {
+  vpc_id = aws_vpc.application.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.application-igw.id
+  }
+
+  tags = {
+    Name = "ramakrishna-pub-RT"
+  }
+}
+
+# Create Private Route Table
+
+resource "aws_route_table" "application-pvt-RT" {
+  vpc_id = aws_vpc.application.id
+
+
+  tags = {
+    Name = "ramakrishna-pvt-RT"
+  }
+}
