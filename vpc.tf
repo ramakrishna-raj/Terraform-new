@@ -92,3 +92,29 @@ resource "aws_route_table" "application-pvt-RT" {
     Name = "ramakrishna-pvt-RT"
   }
 }
+
+# Create Public-RT Aassociation
+
+resource "aws_route_table_association" "application-pub-asc-A" {
+  subnet_id      = aws_subnet.application-pub-sn-A.id
+  route_table_id = aws_route_table.application-pub-RT.id
+}
+
+
+resource "aws_route_table_association" "application-pub-asc-B" {
+  subnet_id      = aws_subnet.application-pub-sn-B.id
+  route_table_id = aws_route_table.application-pub-RT.id
+}
+
+# Create Private-RT Aassociation
+
+resource "aws_route_table_association" "application-pvt-asc-A" {
+  subnet_id      = aws_subnet.application-pvt-sn-A.id
+  route_table_id = aws_route_table.application-pvt-RT.id
+}
+
+
+resource "aws_route_table_association" "application-pvt-asc-B" {
+  subnet_id      = aws_subnet.application-pvt-sn-B.id
+  route_table_id = aws_route_table.application-pvt-RT.id
+}
