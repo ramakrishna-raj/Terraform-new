@@ -56,3 +56,13 @@ resource "aws_subnet" "application-pvt-sn-B" {
     Name = "rama-pvt-sn-B"
   }
 }
+
+# Create Internet Gateway
+
+resource "aws_internet_gateway" "application-igw" {
+  vpc_id = aws_vpc.application.id
+
+  tags = {
+    Name = "ramakrishna-igw"
+  }
+}
