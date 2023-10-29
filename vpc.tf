@@ -187,3 +187,14 @@ resource "aws_network_acl_association" "application-pub-NACL-asc-B" {
   subnet_id      = aws_subnet.application-pub-sn-B.id
 }
 
+# Create Private NACL Association
+
+resource "aws_network_acl_association" "application-pvt-NACL-asc-A" {
+  network_acl_id = aws_network_acl.application-pvt-NACL.id
+  subnet_id      = aws_subnet.application-pvt-sn-A.id
+}
+
+resource "aws_network_acl_association" "application-pvt-NACL-asc-B" {
+  network_acl_id = aws_network_acl.application-pvt-NACL.id
+  subnet_id      = aws_subnet.application-pvt-sn-B.id
+}
