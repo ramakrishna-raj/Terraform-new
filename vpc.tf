@@ -20,3 +20,15 @@ resource "aws_subnet" "application-pub-sn-A" {
     Name = "rama-pub-sn-A"
   }
 }
+
+# Create Public subnet AZ-B
+
+resource "aws_subnet" "application-pub-sn-B" {
+  vpc_id     = aws_vpc.application.id
+  cidr_block = "192.168.2.0/24"
+  availability_zone = "ap-southeast-2b"
+  map_public_ip_on_launch = "true"
+  tags = {
+    Name = "rama-pub-sn-B"
+  }
+}
