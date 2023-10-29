@@ -174,3 +174,16 @@ resource "aws_network_acl" "application-pvt-NACL" {
     Name = "rama-pvt-NACL"
   }
 }
+
+# Create Public NACL Association
+
+resource "aws_network_acl_association" "application-pub-NACL-asc-A" {
+  network_acl_id = aws_network_acl.application-pub-NACL.id
+  subnet_id      = aws_subnet.application-pub-sn-A.id
+}
+
+resource "aws_network_acl_association" "application-pub-NACL-asc-B" {
+  network_acl_id = aws_network_acl.application-pub-NACL.id
+  subnet_id      = aws_subnet.application-pub-sn-B.id
+}
+
