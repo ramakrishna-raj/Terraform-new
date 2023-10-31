@@ -32,3 +32,18 @@ resource "aws_security_group" "application-SG" {
     Name = "rama-SG"
   }
 }
+
+# Create ec2 instance
+
+resource "aws_instance" "application-ec2" {
+  ami           = "ami-0d02292614a3b0df1"
+  instance_type = "t2.micro"
+  subnet_id = aws_subnet.application-pub-sn-A.id
+  key_name = "sydney.new"
+  vpc_security_group_ids = [aws_security_group.application-SG.id]
+  user_data = file("web.sh")
+
+  tags = {
+    Name = "rama-new"
+  }
+}
